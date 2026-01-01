@@ -1,7 +1,12 @@
+
 import React, { useState, useEffect } from 'react';
 import { BUSINESS_INFO } from '../constants';
 
-const Navbar: React.FC = () => {
+interface NavbarProps {
+  onBookClick: () => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ onBookClick }) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -15,7 +20,7 @@ const Navbar: React.FC = () => {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      const offset = 80; // Sticky navbar height adjustment
+      const offset = 80;
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
@@ -33,7 +38,6 @@ const Navbar: React.FC = () => {
       isScrolled ? 'bg-white/95 backdrop-blur-lg shadow-xl py-3' : 'bg-transparent py-6'
     }`}>
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex justify-between items-center">
-        {/* Dynamic & Catchy Professional Logo */}
         <div 
           className="flex items-center group cursor-pointer" 
           onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}
@@ -52,7 +56,6 @@ const Navbar: React.FC = () => {
           </div>
         </div>
         
-        {/* Navigation Tabs - Using JS for reliable smooth scroll */}
         <div className="hidden md:flex space-x-10 items-center text-xs font-bold tracking-[0.2em] uppercase">
           <a 
             href={BUSINESS_INFO.mapsUrl}
@@ -78,15 +81,15 @@ const Navbar: React.FC = () => {
           >
             About
           </button>
-          <a 
-            href={`tel:${BUSINESS_INFO.phone.replace(/\D/g, '')}`} 
-            className="px-6 py-2.5 bg-stone-900 text-white hover:bg-amber-800 hover:shadow-2xl transition-all rounded-sm flex items-center"
+          <button 
+            onClick={onBookClick}
+            className="px-6 py-2.5 bg-stone-900 text-white hover:bg-amber-800 hover:shadow-2xl transition-all rounded-sm flex items-center font-bold tracking-[0.2em] uppercase"
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-2">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-2.824-1.147-5.122-3.445-6.269-6.27l1.293-.97a1.125 1.125 0 00.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H3.75A2.25 2.25 0 001.5 4.5v2.25z" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
             </svg>
             Book Now
-          </a>
+          </button>
         </div>
         
         <button className="md:hidden p-2 text-stone-900">

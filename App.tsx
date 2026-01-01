@@ -1,16 +1,23 @@
-import React from 'react';
+
+import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services';
 import Footer from './components/Footer';
 import BookingSection from './components/BookingSection';
+import BookingModal from './components/BookingModal';
 
 const App: React.FC = () => {
+  const [isBookingOpen, setIsBookingOpen] = useState(false);
+
+  const openBooking = () => setIsBookingOpen(true);
+  const closeBooking = () => setIsBookingOpen(false);
+
   return (
     <div className="min-h-screen">
-      <Navbar />
+      <Navbar onBookClick={openBooking} />
       <main>
-        <Hero />
+        <Hero onBookClick={openBooking} />
         
         {/* Subtle Brand Strip */}
         <div className="bg-stone-900 py-10 overflow-hidden border-y border-stone-800">
@@ -40,9 +47,12 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        <BookingSection />
+        <BookingSection onBookClick={openBooking} />
       </main>
       <Footer />
+
+      {/* Global Quick Booking Modal */}
+      {isBookingOpen && <BookingModal onClose={closeBooking} />}
     </div>
   );
 };
