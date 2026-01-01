@@ -13,25 +13,32 @@ const App: React.FC = () => {
   const closeBooking = () => setIsBookingOpen(false);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen selection:bg-amber-100 selection:text-amber-900">
       <Navbar onBookClick={openBooking} />
       <main>
         <Hero onBookClick={openBooking} />
         
         <Services onBookClick={openBooking} />
         
-        {/* About & Testimonial Feature */}
-        <section id="about" className="bg-stone-50 py-32 overflow-hidden relative border-b border-stone-200">
-          <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[600px] h-[600px] bg-amber-50 rounded-full blur-3xl opacity-60 z-0"></div>
-          <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-            <h2 className="text-xs font-bold tracking-[0.5em] uppercase text-amber-900/60 mb-10">Our Heritage</h2>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-16 h-16 text-stone-200 mx-auto mb-12">
-              <path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H16.017C14.9124 8 14.017 7.10457 14.017 6V5C14.017 3.89543 14.9124 3 16.017 3H19.017C21.2261 3 23.017 4.79086 23.017 7V15C23.017 18.3137 20.3307 21 17.017 21H14.017ZM1.017 21L1.017 18C1.017 16.8954 1.91243 16 3.017 16H6.017C6.56928 16 7.017 15.5523 7.017 15V9C7.017 8.44772 6.56928 8 6.017 8H3.017C1.91243 8 1.017 7.10457 1.017 6V5C1.017 3.89543 1.91243 3 3.017 3H6.017C8.22614 3 10.017 4.79086 10.017 7V15C10.017 18.3137 7.33071 21 4.017 21H1.017Z" />
-            </svg>
-            <h3 className="text-3xl md:text-5xl font-serif italic text-stone-800 mb-16 leading-relaxed">
-              Located in the heart of Chantilly, we bridge the gap between traditional grooming and modern hair design. Our mission is to provide an inclusive space where every client leaves feeling their absolute best.
+        {/* About Section */}
+        <section id="about" className="bg-white py-24 md:py-48 overflow-hidden relative">
+          <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-amber-50 rounded-full blur-[80px] md:blur-[120px] opacity-60 z-0"></div>
+          
+          <div className="max-w-5xl mx-auto px-6 text-center relative z-10">
+            <div className="flex items-center justify-center space-x-6 mb-12">
+              <div className="h-[1px] w-12 bg-stone-200"></div>
+              <h2 className="text-[10px] md:text-xs font-black tracking-[0.5em] uppercase text-amber-900/40">Our Philosophy</h2>
+              <div className="h-[1px] w-12 bg-stone-200"></div>
+            </div>
+            
+            <h3 className="text-3xl md:text-6xl font-serif italic text-stone-800 mb-16 leading-[1.3] md:leading-relaxed">
+              "Located in the heart of Chantilly, we bridge the gap between traditional grooming and modern hair design. Every guest is a <span className="text-amber-800/70">masterpiece</span> in progress."
             </h3>
-            <p className="font-bold tracking-[0.4em] uppercase text-stone-900 text-[10px]">— The Lotte Plaza Team</p>
+            
+            <div className="flex flex-col items-center">
+              <div className="w-16 h-[1px] bg-stone-900/10 mb-8"></div>
+              <p className="font-black tracking-[0.4em] uppercase text-stone-900 text-[10px] md:text-[11px]">— The Lotte Plaza Team</p>
+            </div>
           </div>
         </section>
 
@@ -39,7 +46,6 @@ const App: React.FC = () => {
       </main>
       <Footer />
 
-      {/* Global Quick Booking Modal */}
       {isBookingOpen && <BookingModal onClose={closeBooking} />}
     </div>
   );
