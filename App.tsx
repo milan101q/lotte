@@ -6,7 +6,6 @@ import Footer from './components/Footer';
 import BookingSection from './components/BookingSection';
 import BookingModal from './components/BookingModal';
 import ChatBot from './components/ChatBot';
-import Gallery from './components/Gallery';
 
 const App: React.FC = () => {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -33,8 +32,6 @@ const App: React.FC = () => {
 
         <Services onBookClick={openBooking} />
         
-        <Gallery />
-
         {/* About & Testimonial Feature */}
         <section id="about" className="bg-stone-50 py-32 overflow-hidden relative border-b border-stone-200">
           <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[600px] h-[600px] bg-amber-50 rounded-full blur-3xl opacity-60 z-0"></div>
