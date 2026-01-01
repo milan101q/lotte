@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -19,17 +18,6 @@ const App: React.FC = () => {
       <main>
         <Hero onBookClick={openBooking} />
         
-        {/* Subtle Brand Strip */}
-        <div className="bg-stone-900 py-10 overflow-hidden border-y border-stone-800">
-          <div className="animate-scroll whitespace-nowrap">
-            {[1, 2].map(i => (
-              <span key={i} className="text-stone-500 text-3xl font-serif tracking-[0.2em] uppercase opacity-40 inline-block px-12">
-                Premium Cuts • Expert Coloring • Master Barbering • Salon Luxury • Family Friendly • Walk-ins Welcome
-              </span>
-            ))}
-          </div>
-        </div>
-
         <Services onBookClick={openBooking} />
         
         {/* About & Testimonial Feature */}

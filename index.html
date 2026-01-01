@@ -12,8 +12,6 @@
     <style>
         body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
         h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
-        .animate-scroll { display: flex; width: 200%; animation: scroll 40s linear infinite; }
-        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         .mirror-sheen { pointer-events: none; }
         
         /* Custom scrollbar for premium feel */
@@ -289,17 +287,6 @@
                     <Navbar onBookClick={openBook} />
                     <Hero onBookClick={openBook} />
                     
-                    {/* Brand Ticker */}
-                    <div className="bg-stone-900 py-10 overflow-hidden border-y border-stone-800">
-                        <div className="animate-scroll">
-                            {[1, 2].map(i => (
-                                <span key={i} className="text-stone-500 text-3xl font-serif tracking-[0.2em] uppercase opacity-40 inline-block px-12">
-                                    Premium Cuts • Expert Coloring • Master Barbering • Salon Luxury • Family Friendly
-                                </span>
-                            ))}
-                        </div>
-                    </div>
-
                     <Services onBookClick={openBook} />
                     
                     <section id="about" className="py-40 bg-white relative overflow-hidden">
