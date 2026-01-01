@@ -80,13 +80,8 @@
             phone: "(703) 263-1778",
             mapsUrl: "https://www.google.com/maps/dir/?api=1&destination=13955+Metrotech+Dr+Chantilly+VA+20151",
             hours: { 
-                monday: "9:00 AM - 8:00 PM",
-                tuesday: "9:00 AM - 8:00 PM",
-                wednesday: "9:00 AM - 8:00 PM",
-                thursday: "9:00 AM - 8:00 PM",
-                friday: "9:00 AM - 8:00 PM",
-                saturday: "9:00 AM - 7:00 PM",
-                sunday: "9:00 AM - 7:00 PM"
+                weekday: "09:00 — 20:00",
+                weekend: "09:00 — 19:00"
             }
         };
 
@@ -102,13 +97,9 @@
             { id: 't3', name: "Organic Scalp Detox", description: "Exfoliating treatment with essential oils to promote hair growth.", category: 'Treatment' }
         ];
 
-        // --- ENHANCED DYNAMIC LOGO COMPONENT ---
         const DynamicLogo = () => (
             <div className="relative w-20 h-20 md:w-24 md:h-24 flex items-center justify-center">
-                {/* Background Decor */}
                 <div className="absolute inset-0 bg-stone-900 rounded-[1.5rem] rotate-[15deg] group-hover:rotate-[45deg] group-hover:bg-amber-950 transition-all duration-700 shadow-2xl border border-white/5"></div>
-                
-                {/* SVG Graphics */}
                 <svg viewBox="0 0 140 140" className="relative w-16 h-16 md:w-20 md:h-20 text-white fill-current logo-shadow overflow-visible">
                     <defs>
                         <linearGradient id="metalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -124,8 +115,6 @@
                             </feMerge>
                         </filter>
                     </defs>
-
-                    {/* Comb Graphic - Carbon Fiber Aesthetic */}
                     <g className="comb-graphic" transform="translate(10, 85) rotate(-15)">
                         <rect width="110" height="10" rx="2" fill="#292524" />
                         {[...Array(18)].map((_, i) => (
@@ -133,29 +122,17 @@
                         ))}
                         <rect x="0" y="4" width="110" height="2" fill="white" fillOpacity="0.1" className="shimmer-effect" />
                     </g>
-
-                    {/* Pivot Screw */}
                     <circle cx="75" cy="65" r="4.5" fill="#d97706" className="z-30" filter="url(#glow)" />
                     <circle cx="75" cy="65" r="1.5" fill="#451a03" className="z-40" />
-
-                    {/* Scissor Top Blade & Handle - Ergonomic Design */}
                     <g className="blade-top origin-[75px,65px]" transform="rotate(-22)">
-                        {/* Blade */}
                         <path d="M75,65 L130,50 C135,48 135,52 130,54 L75,65" fill="url(#metalGrad)" />
-                        {/* Connecting Arm */}
                         <path d="M75,65 L40,82" stroke="white" strokeWidth="6" strokeLinecap="round" />
-                        {/* Ergonomic Handle */}
                         <path d="M40,82 C30,82 20,88 20,98 C20,108 30,114 40,114 C50,114 60,108 60,98 C60,93 55,85 45,82" fill="none" stroke="white" strokeWidth="5" />
                         <circle cx="40" cy="98" r="8" fill="#1c1917" />
                     </g>
-
-                    {/* Scissor Bottom Blade & Handle */}
                     <g className="blade-bottom origin-[75px,65px]" transform="rotate(22)">
-                        {/* Blade */}
                         <path d="M75,65 L130,80 C135,82 135,78 130,76 L75,65" fill="url(#metalGrad)" />
-                        {/* Connecting Arm */}
                         <path d="M75,65 L40,48" stroke="white" strokeWidth="6" strokeLinecap="round" />
-                        {/* Ergonomic Handle */}
                         <path d="M40,48 C30,48 20,42 20,32 C20,22 30,16 40,16 C50,16 60,22 60,32 C60,37 55,45 45,48" fill="none" stroke="white" strokeWidth="5" />
                         <circle cx="40" cy="32" r="8" fill="#1c1917" />
                     </g>
@@ -163,20 +140,15 @@
             </div>
         );
 
-        // --- COMPONENTS ---
-
         const Navbar = ({ onBookClick }) => {
             const [isScrolled, setIsScrolled] = useState(false);
             const [isMenuOpen, setIsMenuOpen] = useState(false);
-
             useEffect(() => {
                 const handleScroll = () => setIsScrolled(window.scrollY > 20);
                 window.addEventListener('scroll', handleScroll);
                 return () => window.removeEventListener('scroll', handleScroll);
             }, []);
-
             const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-            
             const handleNavClick = (id) => {
                 const el = document.getElementById(id);
                 if (el) {
@@ -184,12 +156,10 @@
                     setIsMenuOpen(false);
                 }
             };
-
             const handleMobileBook = () => {
                 onBookClick();
                 setIsMenuOpen(false);
             };
-
             return (
                 <>
                     <nav className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-500 ${isScrolled || isMenuOpen ? 'bg-white/95 backdrop-blur-lg shadow-xl py-3' : 'bg-transparent py-6'}`}>
@@ -201,41 +171,31 @@
                                     <span className="text-[10px] md:text-[12px] font-bold tracking-[0.5em] uppercase text-amber-800 mt-1">Barber & Salon</span>
                                 </div>
                             </div>
-                            
-                            {/* Desktop Links */}
                             <div className="hidden lg:flex space-x-12 items-center text-[11px] font-black tracking-[0.25em] uppercase">
                                 <button onClick={() => handleNavClick('services')} className="hover:text-amber-800 transition-colors">Services</button>
                                 <button onClick={() => handleNavClick('about')} className="hover:text-amber-800 transition-colors">Heritage</button>
                                 <button onClick={() => handleNavClick('visit')} className="hover:text-amber-800 transition-colors">Visit</button>
                                 <button onClick={onBookClick} className="px-10 py-3.5 bg-stone-900 text-white hover:bg-amber-950 transition-all rounded-sm uppercase tracking-widest shadow-xl active:scale-95">Book Now</button>
                             </div>
-
-                            {/* Mobile Hamburger Toggle */}
                             <button onClick={toggleMenu} className="lg:hidden p-2 text-stone-900 relative z-[70]" aria-label="Toggle menu">
                                 {isMenuOpen ? (
                                     <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M6 18L18 6M6 6l12 12"/></svg>
                                 ) : (
-                                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
                                 )}
                             </button>
                         </div>
                     </nav>
-
-                    {/* Mobile Fullscreen Menu Overlay */}
                     <div className={`fixed inset-0 z-[55] bg-stone-900 transition-transform duration-500 ease-in-out ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'} lg:hidden`}>
                         <div className="h-full flex flex-col items-center justify-center space-y-10 px-8 text-center">
                             <button onClick={() => handleNavClick('services')} className="text-4xl font-serif italic text-white hover:text-amber-500 transition-colors">Our Services</button>
                             <button onClick={() => handleNavClick('about')} className="text-4xl font-serif italic text-white hover:text-amber-500 transition-colors">Heritage</button>
                             <button onClick={() => handleNavClick('visit')} className="text-4xl font-serif italic text-white hover:text-amber-500 transition-colors">Visit Us</button>
                             <div className="w-16 h-px bg-stone-800"></div>
-                            <button onClick={handleMobileBook} className="w-full py-6 bg-amber-900 text-white font-bold tracking-[0.3em] uppercase rounded-sm shadow-2xl active:scale-95">
-                                Book Appointment
-                            </button>
+                            <button onClick={handleMobileBook} className="w-full py-6 bg-amber-900 text-white font-bold tracking-[0.3em] uppercase rounded-sm shadow-2xl active:scale-95">Book Appointment</button>
                             <div className="flex flex-col space-y-2">
                                 <p className="text-stone-500 text-[10px] font-black tracking-widest uppercase">Direct Line</p>
-                                <a href={`tel:${BUSINESS_INFO.phone.replace(/\D/g, '')}`} className="text-stone-100 text-2xl font-serif">
-                                    {BUSINESS_INFO.phone}
-                                </a>
+                                <a href={`tel:${BUSINESS_INFO.phone.replace(/\D/g, '')}`} className="text-stone-100 text-2xl font-serif">{BUSINESS_INFO.phone}</a>
                             </div>
                         </div>
                     </div>
@@ -305,31 +265,34 @@
             <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
                 <div className="absolute inset-0 bg-stone-950/95 backdrop-blur-xl" onClick={onClose}></div>
                 <div className="relative w-full max-w-2xl bg-white rounded-xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-500">
-                    <div className="bg-stone-900 text-white p-12 md:p-16 text-center relative">
+                    <div className="bg-stone-900 text-white p-10 md:p-16 text-center relative">
                         <button onClick={onClose} className="absolute top-8 right-8 text-stone-500 hover:text-white transition-colors">
                             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" strokeWidth="1" /></svg>
                         </button>
-                        <h3 className="text-5xl font-serif italic mb-6">Reservations</h3>
+                        <h3 className="text-4xl md:text-5xl font-serif italic mb-6">Reservations</h3>
                         <p className="text-amber-500 text-[11px] font-black tracking-[0.6em] uppercase">Chantilly Studio</p>
                     </div>
-                    <div className="p-12 md:p-20 space-y-12">
-                        <div className="bg-stone-50 p-10 border border-stone-100 flex flex-col md:flex-row items-center justify-between gap-8 group">
+                    <div className="p-6 sm:p-12 md:p-20 space-y-12">
+                        <div className="bg-stone-50 p-6 sm:p-10 border border-stone-100 flex flex-col md:flex-row items-center justify-between gap-8 group">
                             <div className="text-center md:text-left">
                                 <p className="text-[11px] font-black text-amber-900 uppercase tracking-widest mb-3">Priority Booking</p>
-                                <p className="text-3xl md:text-5xl font-serif text-stone-900 group-hover:text-amber-900 transition-colors">{BUSINESS_INFO.phone}</p>
+                                <p className="text-2xl sm:text-3xl md:text-4xl font-serif text-stone-900 group-hover:text-amber-900 transition-colors whitespace-nowrap leading-none">{BUSINESS_INFO.phone}</p>
                             </div>
-                            <a href={`tel:${BUSINESS_INFO.phone.replace(/\D/g, '')}`} className="w-full md:w-auto px-12 py-6 bg-stone-900 text-white text-xs font-black uppercase tracking-[0.3em] hover:bg-amber-950 transition-all text-center rounded shadow-2xl">Call Now</a>
+                            <a href={`tel:${BUSINESS_INFO.phone.replace(/\D/g, '')}`} className="w-full md:w-auto px-10 py-5 bg-stone-900 text-white text-xs font-black uppercase tracking-[0.3em] hover:bg-amber-950 transition-all text-center rounded shadow-2xl">Call Now</a>
                         </div>
-                        <div className="grid grid-cols-2 gap-12 text-[12px] font-black uppercase tracking-[0.4em] text-stone-400">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-12 text-[12px] font-black uppercase tracking-[0.4em] text-stone-400">
                             <div className="space-y-4">
                                 <p className="text-stone-900 border-b-2 border-amber-900/20 pb-3">Weekday</p>
-                                <p>09:00 — 20:00</p>
+                                <p className="text-stone-700 text-base md:text-xl font-serif">{BUSINESS_INFO.hours.weekday}</p>
                             </div>
                             <div className="space-y-4">
                                 <p className="text-stone-900 border-b-2 border-amber-900/20 pb-3">Weekend</p>
-                                <p>09:00 — 19:00</p>
+                                <p className="text-stone-700 text-base md:text-xl font-serif">{BUSINESS_INFO.hours.weekend}</p>
                             </div>
                         </div>
+                    </div>
+                    <div className="bg-stone-50 p-6 text-center border-t border-stone-100">
+                        <p className="text-[10px] text-stone-500 uppercase tracking-widest italic font-medium">Holidays may affect the working hours</p>
                     </div>
                 </div>
             </div>
@@ -340,60 +303,41 @@
                 <div className="absolute top-0 right-0 opacity-10 pointer-events-none translate-x-1/4 -translate-y-1/4">
                     <div className="w-[1200px] h-[1200px] rounded-full border border-amber-900"></div>
                 </div>
-
                 <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-32 items-start">
                         <div className="space-y-16">
                             <div>
                                 <span className="text-amber-500 text-[12px] font-black tracking-[1em] uppercase block mb-8">Studio Map</span>
                                 <h2 className="text-7xl md:text-[10rem] font-serif italic mb-12 text-white tracking-tighter leading-none">Find Us</h2>
-                                <p className="text-stone-400 text-xl md:text-4xl font-light leading-relaxed max-w-xl mb-16">
-                                    Inside <span className="text-white font-medium italic border-b-2 border-amber-950 pb-2">Sully Place</span>. World-class grooming in the heart of Virginia.
-                                </p>
+                                <p className="text-stone-400 text-xl md:text-4xl font-light leading-relaxed max-w-xl mb-16">Inside <span className="text-white font-medium italic border-b-2 border-amber-950 pb-2">Sully Place</span>. World-class grooming in the heart of Virginia.</p>
                             </div>
-                            
                             <div className="space-y-12">
                                 <div className="flex items-start space-x-8">
                                     <div className="mt-1 w-10 h-10 flex-shrink-0 text-amber-500">
                                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                                     </div>
-                                    <p className="text-2xl md:text-4xl text-stone-200 font-serif leading-snug">
-                                        {BUSINESS_INFO.address}
-                                    </p>
+                                    <p className="text-2xl md:text-4xl text-stone-200 font-serif leading-snug">{BUSINESS_INFO.address}</p>
                                 </div>
                                 <div className="pt-10">
-                                    <a 
-                                        href={BUSINESS_INFO.mapsUrl} 
-                                        target="_blank" 
-                                        rel="noopener noreferrer"
-                                        className="inline-flex items-center justify-center px-16 py-7 bg-white text-stone-900 font-black tracking-[0.5em] uppercase hover:bg-amber-950 hover:text-white transition-all group text-xs shadow-2xl"
-                                    >
-                                        Direct Navigation
-                                        <svg className="ml-8 w-6 h-6 transform group-hover:translate-x-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                                    </a>
+                                    <a href={BUSINESS_INFO.mapsUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center px-16 py-7 bg-white text-stone-900 font-black tracking-[0.5em] uppercase hover:bg-amber-950 hover:text-white transition-all group text-xs shadow-2xl">Direct Navigation <svg className="ml-8 w-6 h-6 transform group-hover:translate-x-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
                                 </div>
                             </div>
                         </div>
-
                         <div className="lg:pl-20">
                             <div className="bg-stone-800/40 backdrop-blur-2xl p-16 md:p-24 border border-white/5 relative shadow-[0_40px_100px_-20px_rgba(0,0,0,0.6)]">
                                 <div className="absolute -top-8 -left-8 w-20 h-20 border-t-2 border-l-2 border-amber-900"></div>
                                 <h3 className="text-4xl font-serif mb-16 italic text-amber-500 tracking-wide">Studio Hours</h3>
                                 <div className="space-y-10">
-                                    {Object.entries(BUSINESS_INFO.hours).map(([day, time]) => (
-                                        <div key={day} className="flex justify-between items-center border-b border-white/5 pb-6 group">
-                                            <span className="text-[11px] md:text-[13px] font-black tracking-[0.6em] uppercase text-stone-500 group-hover:text-amber-500 transition-colors">
-                                                {day}
-                                            </span>
-                                            <span className="text-lg md:text-2xl font-serif text-stone-300">
-                                                {time}
-                                            </span>
-                                        </div>
-                                    ))}
+                                    <div className="flex justify-between items-center border-b border-white/5 pb-6 group">
+                                        <span className="text-[11px] md:text-[13px] font-black tracking-[0.6em] uppercase text-stone-500 group-hover:text-amber-500 transition-colors">Weekday</span>
+                                        <span className="text-lg md:text-3xl font-serif text-stone-300">{BUSINESS_INFO.hours.weekday}</span>
+                                    </div>
+                                    <div className="flex justify-between items-center border-b border-white/5 pb-6 group">
+                                        <span className="text-[11px] md:text-[13px] font-black tracking-[0.6em] uppercase text-stone-500 group-hover:text-amber-500 transition-colors">Weekend</span>
+                                        <span className="text-lg md:text-3xl font-serif text-stone-300">{BUSINESS_INFO.hours.weekend}</span>
+                                    </div>
                                 </div>
-                                <p className="mt-16 text-stone-600 text-[11px] tracking-[0.5em] uppercase text-center italic font-bold">
-                                    Excellence Awaits
-                                </p>
+                                <p className="mt-16 text-stone-500 text-[11px] tracking-[0.4em] uppercase text-center italic font-bold">Holidays may affect the working hours</p>
                             </div>
                         </div>
                     </div>
@@ -409,55 +353,41 @@
                             <span className="text-white font-serif text-xl -rotate-45">L</span>
                         </div>
                         <div className="flex flex-col items-center md:items-start space-y-1">
-                            <span className="text-[11px] font-black tracking-[0.5em] uppercase text-stone-600">
-                                © {new Date().getFullYear()} Lotte Plaza Collective
-                            </span>
-                            <span className="text-[9px] font-bold tracking-[0.3em] uppercase text-stone-800">
-                                High Fidelity Grooming
-                            </span>
+                            <span className="text-[11px] font-black tracking-[0.5em] uppercase text-stone-600">© {new Date().getFullYear()} Lotte Plaza Collective</span>
+                            <span className="text-[9px] font-bold tracking-[0.3em] uppercase text-stone-800">High Fidelity Grooming</span>
                         </div>
                     </div>
-                    {/* Navigation links removed as requested */}
                 </div>
             </footer>
         );
 
-        // --- MAIN APP ---
         const App = () => {
             const [isBookOpen, setIsBookOpen] = useState(false);
             const openBook = () => setIsBookOpen(true);
-            const closeBook = () => setIsBookOpen(false);
-
             return (
                 <div className="min-h-screen bg-stone-50">
                     <Navbar onBookClick={openBook} />
                     <Hero onBookClick={openBook} />
-                    
                     <Services onBookClick={openBook} />
-                    
                     <section id="about" className="py-40 md:py-64 bg-white relative overflow-hidden">
-                         <div className="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none">
+                        <div className="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none">
                             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[60rem] font-serif italic text-stone-900 leading-none">L</div>
-                         </div>
+                        </div>
                         <div className="max-w-6xl mx-auto px-6 text-center relative z-10">
                             <span className="text-[12px] font-black tracking-[1em] uppercase text-amber-900/40 block mb-16">The Heritage</span>
-                            <h3 className="text-4xl md:text-8xl font-serif italic text-stone-950 leading-[1.05] tracking-tighter">
-                                "In the heart of Chantilly, we bridge the gap between <span className="text-amber-950 underline decoration-amber-900/30 underline-offset-[20px] decoration-4">traditional mastery</span> and modern design."
-                            </h3>
+                            <h3 className="text-4xl md:text-8xl font-serif italic text-stone-950 leading-[1.05] tracking-tighter">"In the heart of Chantilly, we bridge the gap between <span className="text-amber-950 underline decoration-amber-900/30 underline-offset-[20px] decoration-4">traditional mastery</span> and modern design."</h3>
                             <div className="mt-28 flex flex-col items-center">
                                 <div className="w-24 h-px bg-stone-200 mb-12"></div>
                                 <p className="font-black tracking-[0.8em] uppercase text-stone-900 text-[12px]">Est. MCMXCIX</p>
                             </div>
                         </div>
                     </section>
-
                     <VisitSection />
                     <Footer />
-                    {isBookOpen && <BookingModal onClose={closeBook} />}
+                    {isBookOpen && <BookingModal onClose={() => setIsBookOpen(false)} />}
                 </div>
             );
         };
-
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
     </script>

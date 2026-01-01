@@ -1,4 +1,3 @@
-
 import { Service } from './types';
 
 export const BUSINESS_INFO = {
@@ -8,8 +7,8 @@ export const BUSINESS_INFO = {
   phone: "(703) 263-1778",
   mapsUrl: "https://www.google.com/maps/dir/?api=1&destination=13955+Metrotech+Dr+Chantilly+VA+20151",
   hours: {
-    weekdays: "9:00 AM - 8:00 PM",
-    weekends: "9:00 AM - 7:00 PM"
+    weekday: "09:00 — 20:00",
+    weekend: "09:00 — 19:00"
   },
   facilities: [
     { label: "Wheelchair accessible entrance", icon: "♿" },
