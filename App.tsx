@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -5,7 +6,6 @@ import Services from './components/Services';
 import Footer from './components/Footer';
 import BookingSection from './components/BookingSection';
 import BookingModal from './components/BookingModal';
-import ChatBot from './components/ChatBot';
 
 const App: React.FC = () => {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -50,7 +50,6 @@ const App: React.FC = () => {
         <BookingSection onBookClick={openBooking} />
       </main>
       <Footer />
-      <ChatBot />
 
       {/* Global Quick Booking Modal */}
       {isBookingOpen && <BookingModal onClose={closeBooking} />}

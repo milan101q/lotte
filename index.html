@@ -15,27 +15,30 @@
         .animate-scroll { display: flex; width: 200%; animation: scroll 40s linear infinite; }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         .mirror-sheen { pointer-events: none; }
+        
+        /* Custom scrollbar for premium feel */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f5f5f4; }
+        ::-webkit-scrollbar-thumb { background: #44403c; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #292524; }
     </style>
     <script type="importmap">
 {
   "imports": {
     "react": "https://esm.sh/react@^19.2.3",
     "react-dom/client": "https://esm.sh/react-dom@^19.2.3/client",
-    "@google/genai": "https://esm.sh/@google/genai@^1.34.0",
     "react/": "https://esm.sh/react@^19.2.3/"
   }
 }
 </script>
-    <!-- Babel for in-browser transpilation of JSX/TS -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body class="bg-stone-50 text-stone-900 overflow-x-hidden">
     <div id="root"></div>
 
     <script type="text/babel" data-type="module">
-        import React, { useState, useEffect, useRef } from 'react';
+        import React, { useState, useEffect } from 'react';
         import ReactDOM from 'react-dom/client';
-        import { GoogleGenAI } from "@google/genai";
 
         // --- CONSTANTS ---
         const BUSINESS_INFO = {
@@ -44,14 +47,15 @@
             location: "Sully Place Shopping Center",
             phone: "(703) 263-1778",
             mapsUrl: "https://www.google.com/maps/dir/?api=1&destination=13955+Metrotech+Dr+Chantilly+VA+20151",
-            hours: { weekdays: "9:00 AM - 8:00 PM", weekends: "9:00 AM - 7:00 PM" },
-            facilities: [
-                { label: "Wheelchair accessible entrance", icon: "♿" },
-                { label: "Wheelchair accessible parking lot", icon: "🚗" },
-                { label: "Wheelchair accessible restroom", icon: "🚻" },
-                { label: "Restroom available", icon: "✨" },
-                { label: "Good for kids", icon: "👨‍👩‍👧‍👦" }
-            ]
+            hours: { 
+                monday: "9:00 AM - 8:00 PM",
+                tuesday: "9:00 AM - 8:00 PM",
+                wednesday: "9:00 AM - 8:00 PM",
+                thursday: "9:00 AM - 8:00 PM",
+                friday: "9:00 AM - 8:00 PM",
+                saturday: "9:00 AM - 7:00 PM",
+                sunday: "9:00 AM - 7:00 PM"
+            }
         };
 
         const SERVICES = [
@@ -65,29 +69,6 @@
             { id: 't1', name: "Moisture Recovery", description: "Intensive conditioning mask that repairs heat damage and restores shine.", category: 'Treatment' },
             { id: 't3', name: "Organic Scalp Detox", description: "Exfoliating treatment with essential oils to promote hair growth.", category: 'Treatment' }
         ];
-
-        // --- GEMINI SERVICE ---
-        const getStyleConsultation = async (history, userPrompt) => {
-            try {
-                const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-                const formattedHistory = history.slice(1).map(msg => ({
-                    role: msg.role === 'assistant' ? 'model' : 'user',
-                    parts: [{ text: msg.content }]
-                }));
-
-                const response = await ai.models.generateContent({
-                    model: 'gemini-3-flash-preview',
-                    contents: [...formattedHistory, { role: 'user', parts: [{ text: userPrompt }] }],
-                    config: {
-                        systemInstruction: "You are an expert style consultant for Lotte Plaza Barber & Salon in Chantilly, VA. Be sophisticated, trendy, and concise.",
-                        temperature: 0.7,
-                    }
-                });
-                return response.text;
-            } catch (error) {
-                return "I'm having a little trouble connecting. Please call us at (703) 263-1778!";
-            }
-        };
 
         // --- COMPONENTS ---
 
@@ -113,8 +94,9 @@
                             </div>
                         </div>
                         <div className="hidden md:flex space-x-10 items-center text-xs font-bold tracking-[0.2em] uppercase">
-                            <button onClick={() => document.getElementById('services').scrollIntoView()} className="hover:text-amber-800 transition-colors">Services</button>
-                            <button onClick={() => document.getElementById('about').scrollIntoView()} className="hover:text-amber-800 transition-colors">About</button>
+                            <button onClick={() => document.getElementById('services').scrollIntoView({ behavior: 'smooth' })} className="hover:text-amber-800 transition-colors">Services</button>
+                            <button onClick={() => document.getElementById('about').scrollIntoView({ behavior: 'smooth' })} className="hover:text-amber-800 transition-colors">About</button>
+                            <button onClick={() => document.getElementById('visit').scrollIntoView({ behavior: 'smooth' })} className="hover:text-amber-800 transition-colors">Visit</button>
                             <button onClick={onBookClick} className="px-6 py-2.5 bg-stone-900 text-white hover:bg-amber-800 transition-all rounded-sm uppercase tracking-widest">Book Now</button>
                         </div>
                     </div>
@@ -134,7 +116,7 @@
                         <h1 className="text-6xl md:text-8xl font-serif text-stone-900 leading-[1.1] mb-6">Elevate Your <br /><span className="italic font-light">Signature Style.</span></h1>
                         <p className="text-stone-700 text-lg md:text-xl mb-10 leading-relaxed">Experience the art of grooming at Chantilly's premier Barber & Salon destination. Modern techniques, classic values.</p>
                         <div className="flex space-x-4">
-                            <button onClick={() => document.getElementById('services').scrollIntoView()} className="px-10 py-4 bg-stone-900 text-white uppercase tracking-widest hover:bg-stone-800 transition-all shadow-xl">Our Services</button>
+                            <button onClick={() => document.getElementById('services').scrollIntoView({ behavior: 'smooth' })} className="px-10 py-4 bg-stone-900 text-white uppercase tracking-widest hover:bg-stone-800 transition-all shadow-xl">Our Services</button>
                             <button onClick={onBookClick} className="px-10 py-4 border-2 border-stone-900 uppercase tracking-widest hover:bg-stone-900 hover:text-white transition-all">Book Now</button>
                         </div>
                     </div>
@@ -183,7 +165,7 @@
         const BookingModal = ({ onClose }) => (
             <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
                 <div className="absolute inset-0 bg-stone-950/80 backdrop-blur-sm" onClick={onClose}></div>
-                <div className="relative w-full max-w-lg bg-white rounded-sm shadow-2xl overflow-hidden p-10">
+                <div className="relative w-full max-w-lg bg-white rounded-sm shadow-2xl overflow-hidden p-10 animate-in zoom-in-95 duration-300">
                     <div className="flex justify-between items-center mb-10">
                         <h3 className="text-3xl font-serif">Quick Booking</h3>
                         <button onClick={onClose} className="text-stone-400 hover:text-stone-900">
@@ -198,76 +180,100 @@
                         <a href={`tel:${BUSINESS_INFO.phone.replace(/\D/g, '')}`} className="px-8 py-3 bg-stone-900 text-white text-xs font-bold uppercase tracking-widest hover:bg-amber-800 transition-colors">Call Now</a>
                     </div>
                     <div className="space-y-4 text-xs font-bold uppercase tracking-widest text-stone-500">
-                        <div className="flex justify-between border-b border-stone-100 pb-2"><span>Mon - Fri</span><span className="text-stone-900">{BUSINESS_INFO.hours.weekdays}</span></div>
-                        <div className="flex justify-between"><span>Sat - Sun</span><span className="text-stone-900">{BUSINESS_INFO.hours.weekends}</span></div>
+                        <div className="flex justify-between border-b border-stone-100 pb-2"><span>Monday — Friday</span><span className="text-stone-900">9:00 AM — 8:00 PM</span></div>
+                        <div className="flex justify-between"><span>Saturday — Sunday</span><span className="text-stone-900">9:00 AM — 7:00 PM</span></div>
                     </div>
                 </div>
             </div>
         );
 
-        const ChatBot = () => {
-            const [isOpen, setIsOpen] = useState(false);
-            const [messages, setMessages] = useState([{ role: 'assistant', content: 'Hello! Need style advice or have questions?' }]);
-            const [input, setInput] = useState('');
-            const [loading, setLoading] = useState(false);
-            const scrollRef = useRef(null);
-
-            useEffect(() => { if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight; }, [messages]);
-
-            const send = async () => {
-                if (!input.trim() || loading) return;
-                const userMsg = input.trim();
-                setInput('');
-                setMessages(prev => [...prev, { role: 'user', content: userMsg }]);
-                setLoading(true);
-                const res = await getStyleConsultation(messages, userMsg);
-                setMessages(prev => [...prev, { role: 'assistant', content: res }]);
-                setLoading(false);
-            };
-
-            return (
-                <div className="fixed bottom-6 right-6 z-[100]">
-                    <button onClick={() => setIsOpen(!isOpen)} className="w-16 h-16 bg-stone-900 text-white rounded-full flex items-center justify-center shadow-2xl hover:bg-stone-800 transition-all border-4 border-white">
-                        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" strokeWidth="2" /></svg>
-                    </button>
-                    {isOpen && (
-                        <div className="absolute bottom-20 right-0 w-80 md:w-96 h-[500px] bg-white rounded-2xl shadow-2xl flex flex-col border border-stone-200">
-                            <div className="bg-stone-900 p-6 text-white rounded-t-2xl"><h4 className="font-serif text-lg">Style Assistant</h4></div>
-                            <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-4 bg-stone-50">
-                                {messages.map((m, i) => (
-                                    <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                                        <div className={`px-4 py-3 rounded-2xl text-sm ${m.role === 'user' ? 'bg-amber-800 text-white' : 'bg-white border text-stone-800'}`}>{m.content}</div>
-                                    </div>
-                                ))}
-                            </div>
-                            <div className="p-4 bg-white border-t flex space-x-2">
-                                <input value={input} onChange={e => setInput(e.target.value)} onKeyPress={e => e.key === 'Enter' && send()} className="flex-1 bg-stone-100 rounded-lg px-4 py-2 text-sm focus:ring-1 focus:ring-stone-900 outline-none" placeholder="Ask away..." />
-                                <button onClick={send} className="p-2 bg-stone-900 text-white rounded-lg"><svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" strokeWidth="2" /></svg></button>
-                            </div>
-                        </div>
-                    )}
+        const VisitSection = () => (
+            <section id="visit" className="py-32 bg-stone-900 text-white overflow-hidden relative">
+                {/* Background Decor */}
+                <div className="absolute top-0 right-0 opacity-10 pointer-events-none translate-x-1/4 -translate-y-1/4">
+                    <div className="w-[800px] h-[800px] rounded-full border border-stone-100"></div>
                 </div>
-            );
-        };
 
-        const Footer = () => (
-            <footer className="bg-stone-900 text-white pt-24 pb-12">
-                <div className="max-w-7xl mx-auto px-8">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 mb-20">
-                        <div>
-                            <h2 className="text-5xl font-serif mb-12">Visit Us</h2>
-                            <div className="space-y-10">
-                                <div><h4 className="text-xs uppercase tracking-widest text-stone-500 mb-2">Location</h4><p className="text-xl">{BUSINESS_INFO.address}</p></div>
-                                <div><h4 className="text-xs uppercase tracking-widest text-stone-500 mb-2">Call</h4><p className="text-3xl font-serif">{BUSINESS_INFO.phone}</p></div>
+                <div className="max-w-7xl mx-auto px-8 relative z-10">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
+                        {/* Visit Us Column */}
+                        <div className="space-y-12">
+                            <div>
+                                <span className="text-amber-500 text-[10px] font-black tracking-[0.6em] uppercase block mb-4">Location</span>
+                                <h2 className="text-6xl md:text-8xl font-serif italic mb-10">Visit Us</h2>
+                                <p className="text-stone-400 text-lg md:text-2xl font-light leading-relaxed max-w-md">
+                                    Located inside the <span className="text-white font-medium italic">Sully Place Shopping Center</span>. We're easy to find and ready to welcome you.
+                                </p>
+                            </div>
+                            
+                            <div className="space-y-6">
+                                <div className="flex items-start space-x-4">
+                                    <div className="mt-1 w-6 h-6 flex-shrink-0">
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" className="text-amber-500"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                    </div>
+                                    <p className="text-xl md:text-2xl text-stone-200 font-serif leading-snug">
+                                        {BUSINESS_INFO.address}
+                                    </p>
+                                </div>
+                                <div className="pt-6">
+                                    <a 
+                                        href={BUSINESS_INFO.mapsUrl} 
+                                        target="_blank" 
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center px-10 py-5 bg-white text-stone-900 font-bold tracking-[0.3em] uppercase hover:bg-amber-500 hover:text-white transition-all group"
+                                    >
+                                        Get Directions
+                                        <svg className="ml-4 w-4 h-4 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                        <div className="bg-stone-800 p-10 flex flex-col items-center justify-center text-center border-t-4 border-amber-800">
-                            <h3 className="text-2xl font-serif mb-6">Hours</h3>
-                            <p className="text-stone-400 uppercase text-xs font-bold tracking-[0.2em] mb-2">Mon — Fri: {BUSINESS_INFO.hours.weekdays}</p>
-                            <p className="text-stone-400 uppercase text-xs font-bold tracking-[0.2em]">Sat — Sun: {BUSINESS_INFO.hours.weekends}</p>
+
+                        {/* Hours Column */}
+                        <div className="lg:pl-20">
+                            <div className="bg-stone-800/50 backdrop-blur-sm p-12 md:p-16 border border-stone-700/50 relative">
+                                <div className="absolute -top-4 -left-4 w-12 h-12 border-t-2 border-l-2 border-amber-500"></div>
+                                <h3 className="text-3xl font-serif mb-12 italic text-amber-500">Business Hours</h3>
+                                <div className="space-y-8">
+                                    {Object.entries(BUSINESS_INFO.hours).map(([day, time]) => (
+                                        <div key={day} className="flex justify-between items-center border-b border-stone-700/50 pb-4 group">
+                                            <span className="text-[10px] md:text-xs font-black tracking-[0.4em] uppercase text-stone-500 group-hover:text-white transition-colors">
+                                                {day}
+                                            </span>
+                                            <span className="text-sm md:text-base font-medium tracking-wide text-stone-300">
+                                                {time}
+                                            </span>
+                                        </div>
+                                    ))}
+                                </div>
+                                <div className="mt-12 text-center">
+                                    <p className="text-stone-500 text-[10px] tracking-widest uppercase italic">
+                                        * Subject to change on public holidays
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div className="border-t border-stone-800 pt-8 text-sm text-stone-500 text-center">© {new Date().getFullYear()} Lotte Plaza Barber & Salon. All Rights Reserved.</div>
+                </div>
+            </section>
+        );
+
+        const Footer = () => (
+            <footer className="bg-stone-950 text-white py-12 border-t border-stone-900">
+                <div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+                    <div className="flex items-center space-x-4">
+                        <div className="w-8 h-8 flex items-center justify-center bg-stone-800 rounded-sm transform rotate-45">
+                            <span className="text-white font-serif text-sm -rotate-45">L</span>
+                        </div>
+                        <span className="text-[10px] font-black tracking-[0.4em] uppercase text-stone-500">
+                            © {new Date().getFullYear()} Lotte Plaza Barber & Salon
+                        </span>
+                    </div>
+                    <div className="flex space-x-12 text-[10px] font-black tracking-[0.4em] uppercase text-stone-500">
+                        <a href="#services" className="hover:text-amber-500 transition-colors">Services</a>
+                        <a href="#about" className="hover:text-amber-500 transition-colors">Heritage</a>
+                        <a href="#visit" className="hover:text-amber-500 transition-colors">Visit</a>
+                    </div>
                 </div>
             </footer>
         );
@@ -279,9 +285,11 @@
             const closeBook = () => setIsBookOpen(false);
 
             return (
-                <div className="min-h-screen">
+                <div className="min-h-screen bg-stone-50">
                     <Navbar onBookClick={openBook} />
                     <Hero onBookClick={openBook} />
+                    
+                    {/* Brand Ticker */}
                     <div className="bg-stone-900 py-10 overflow-hidden border-y border-stone-800">
                         <div className="animate-scroll">
                             {[1, 2].map(i => (
@@ -291,18 +299,27 @@
                             ))}
                         </div>
                     </div>
+
                     <Services onBookClick={openBook} />
-                    <section id="about" className="py-32 bg-stone-50 text-center px-6">
-                        <div className="max-w-4xl mx-auto">
-                            <h2 className="text-xs font-bold tracking-[0.5em] uppercase text-amber-900/60 mb-10">Our Heritage</h2>
-                            <h3 className="text-3xl md:text-5xl font-serif italic text-stone-800 leading-relaxed">
-                                Located in the heart of Chantilly, we bridge the gap between traditional grooming and modern hair design. Our mission is to provide an inclusive space where every client leaves feeling their absolute best.
+                    
+                    <section id="about" className="py-40 bg-white relative overflow-hidden">
+                         <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[40rem] font-serif italic text-stone-900 leading-none">L</div>
+                         </div>
+                        <div className="max-w-5xl mx-auto px-6 text-center relative z-10">
+                            <span className="text-[10px] font-black tracking-[0.6em] uppercase text-amber-900/40 block mb-12">Our Philosophy</span>
+                            <h3 className="text-4xl md:text-7xl font-serif italic text-stone-800 leading-[1.2]">
+                                "Located in the heart of Chantilly, we bridge the gap between traditional grooming and modern hair design. Every guest is a <span className="text-amber-900/60 font-light">masterpiece</span> in progress."
                             </h3>
-                            <p className="mt-12 font-bold tracking-[0.4em] uppercase text-stone-900 text-[10px]">— The Lotte Plaza Team</p>
+                            <div className="mt-16 flex flex-col items-center">
+                                <div className="w-12 h-px bg-stone-200 mb-8"></div>
+                                <p className="font-bold tracking-[0.5em] uppercase text-stone-900 text-[10px]">— The Lotte Plaza Collective</p>
+                            </div>
                         </div>
                     </section>
+
+                    <VisitSection />
                     <Footer />
-                    <ChatBot />
                     {isBookOpen && <BookingModal onClose={closeBook} />}
                 </div>
             );
