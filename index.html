@@ -3,7 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lotte Plaza Barber & Salon</title>
+    <title>Lotte Plaza Barber & Salon | Premier Unisex Grooming in Chantilly, VA</title>
+    <meta name="description" content="Chantilly's premier unisex destination for precision barbering and luxury salon services. Located in Sully Place Shopping Center. Professional cuts, fades, and hair design.">
+    <meta name="keywords" content="Barber Shop Chantilly VA, Hair Salon Chantilly, Unisex Haircuts, Men's Haircut Chantilly, Women's Salon Chantilly, Lotte Plaza Barber, Sully Place Barber, Hair Stylist 20151">
+    <link rel="canonical" href="https://lotteplazabarber.com" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lotteplazabarber.com">
+    <meta property="og:title" content="Lotte Plaza Barber & Salon | Premier Unisex Grooming">
+    <meta property="og:description" content="Precision barbering and luxury salon services in Chantilly, VA. The ultimate unisex grooming destination.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&q=80&w=1200">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://lotteplazabarber.com">
+    <meta property="twitter:title" content="Lotte Plaza Barber & Salon | Chantilly, VA">
+    <meta property="twitter:description" content="Chantilly's premier unisex destination for precision barbering and luxury salon services.">
+    <meta property="twitter:image" content="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&q=80&w=1200">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BeautySalon",
+      "name": "Lotte Plaza Barber & Salon",
+      "image": "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&q=80&w=1000",
+      "@id": "https://lotteplazabarber.com",
+      "url": "https://lotteplazabarber.com",
+      "telephone": "+1-703-263-1778",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "13955 Metrotech Dr",
+        "addressLocality": "Chantilly",
+        "addressRegion": "VA",
+        "postalCode": "20151",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 38.8954815,
+        "longitude": -77.4269561
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "20:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Saturday", "Sunday"],
+          "opens": "09:00",
+          "closes": "19:00"
+        }
+      ],
+      "sameAs": [
+        "https://www.google.com/maps/place/Lotte+Plaza+Barber+%26+Salon/@38.8954815,-77.4269561,17z"
+      ]
+    }
+    </script>
+
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>✂️</text></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -211,7 +273,7 @@
         const Hero = ({ onBookClick }) => (
             <section className="relative min-h-screen w-full flex items-center overflow-hidden pt-20 lg:pt-24">
                 <div className="absolute inset-0 z-0">
-                    <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&q=80&w=2000" className="w-full h-full object-cover grayscale-[0.3]" />
+                    <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&q=80&w=2000" alt="Lotte Plaza Barber & Salon Interior - Luxury Grooming Chantilly" className="w-full h-full object-cover grayscale-[0.3]" />
                     <div className="absolute inset-0 bg-gradient-to-r from-stone-50 via-stone-50/75 to-transparent"></div>
                 </div>
                 <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 w-full">
@@ -219,7 +281,6 @@
                         <div className="flex items-center space-x-4 mb-8">
                           <span className="block text-amber-900 font-bold tracking-[0.5em] uppercase text-xs">Unisex Excellence</span>
                           <div className="w-8 h-px bg-amber-900/30"></div>
-                          <span className="block text-stone-400 font-bold tracking-[0.3em] uppercase text-[10px]">Est. MCMXCIX</span>
                         </div>
                         <h1 className="text-7xl md:text-[10rem] font-serif text-stone-900 leading-[0.85] mb-10 tracking-tight">Art of <br /><span className="italic font-light text-stone-400">Grooming.</span></h1>
                         <p className="text-stone-700 text-xl md:text-3xl mb-14 leading-relaxed max-w-2xl font-light">Elevate your presence at Chantilly's premier <span className="text-stone-900 font-medium">Unisex Barber & Salon</span> destination. Precision cuts, bespoke care.</p>
@@ -323,14 +384,14 @@
                 <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-32 items-start">
                         <div className="space-y-16">
-                            <div>
+                            <div role="contentinfo">
                                 <span className="text-amber-500 text-[12px] font-black tracking-[1em] uppercase block mb-8">Studio Map</span>
                                 <h2 className="text-7xl md:text-[10rem] font-serif italic mb-12 text-white tracking-tighter leading-none">Find Us</h2>
                                 <p className="text-stone-400 text-xl md:text-4xl font-light leading-relaxed max-w-xl mb-16">Inside <span className="text-white font-medium italic border-b-2 border-amber-950 pb-2">Sully Place</span>. World-class unisex grooming in the heart of Virginia.</p>
                             </div>
                             <div className="space-y-12">
                                 <div className="flex items-start space-x-8">
-                                    <div className="mt-1 w-10 h-10 flex-shrink-0 text-amber-500">
+                                    <div className="mt-1 w-10 h-10 flex-shrink-0 text-amber-500" aria-hidden="true">
                                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                                     </div>
                                     <p className="text-2xl md:text-4xl text-stone-200 font-serif leading-snug">{BUSINESS_INFO.address}</p>
@@ -391,7 +452,7 @@
                     <Hero onBookClick={openBook} />
                     <Services onBookClick={openBook} />
                     <section id="about" className="py-40 md:py-64 bg-white relative overflow-hidden">
-                        <div className="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none">
+                        <div className="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none" aria-hidden="true">
                             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[60rem] font-serif italic text-stone-900 leading-none">L</div>
                         </div>
                         <div className="max-w-6xl mx-auto px-6 text-center relative z-10">
