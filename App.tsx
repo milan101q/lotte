@@ -29,7 +29,7 @@ const App: React.FC = () => {
               <path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H16.017C14.9124 8 14.017 7.10457 14.017 6V5C14.017 3.89543 14.9124 3 16.017 3H19.017C21.2261 3 23.017 4.79086 23.017 7V15C23.017 18.3137 20.3307 21 17.017 21H14.017ZM1.017 21L1.017 18C1.017 16.8954 1.91243 16 3.017 16H6.017C6.56928 16 7.017 15.5523 7.017 15V9C7.017 8.44772 6.56928 8 6.017 8H3.017C1.91243 8 1.017 7.10457 1.017 6V5C1.017 3.89543 1.91243 3 3.017 3H6.017C8.22614 3 10.017 4.79086 10.017 7V15C10.017 18.3137 7.33071 21 4.017 21H1.017Z" />
             </svg>
             <h3 className="text-3xl md:text-5xl font-serif italic text-stone-800 mb-16 leading-relaxed">
-              Located in the heart of Chantilly, we bridge the gap between traditional grooming and modern hair design. Our mission is to provide an inclusive space where every client leaves feeling their absolute best.
+              Located in the heart of Chantilly, we are a <span className="text-amber-900 font-bold">premier unisex destination</span>, bridging the gap between traditional grooming and modern hair design. Our mission is to provide an inclusive space where every guest leaves feeling their absolute best.
             </h3>
             <p className="font-bold tracking-[0.4em] uppercase text-stone-900 text-[10px]">— The Lotte Plaza Team</p>
           </div>

@@ -216,9 +216,13 @@
                 </div>
                 <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 w-full">
                     <div className="max-w-4xl py-12">
-                        <span className="block text-amber-900 font-bold tracking-[0.5em] uppercase text-xs mb-8">Established Mastery</span>
+                        <div className="flex items-center space-x-4 mb-8">
+                          <span className="block text-amber-900 font-bold tracking-[0.5em] uppercase text-xs">Unisex Excellence</span>
+                          <div className="w-8 h-px bg-amber-900/30"></div>
+                          <span className="block text-stone-400 font-bold tracking-[0.3em] uppercase text-[10px]">Est. MCMXCIX</span>
+                        </div>
                         <h1 className="text-7xl md:text-[10rem] font-serif text-stone-900 leading-[0.85] mb-10 tracking-tight">Art of <br /><span className="italic font-light text-stone-400">Grooming.</span></h1>
-                        <p className="text-stone-700 text-xl md:text-3xl mb-14 leading-relaxed max-w-2xl font-light">Elevate your presence at Chantilly's premier Barber & Salon destination. Precision cuts, luxury care.</p>
+                        <p className="text-stone-700 text-xl md:text-3xl mb-14 leading-relaxed max-w-2xl font-light">Elevate your presence at Chantilly's premier <span className="text-stone-900 font-medium">Unisex Barber & Salon</span> destination. Precision cuts, bespoke care.</p>
                         <div className="flex flex-col sm:flex-row items-center space-y-5 sm:space-y-0 sm:space-x-8">
                             <button onClick={() => document.getElementById('services').scrollIntoView({ behavior: 'smooth' })} className="px-14 py-6 bg-stone-900 text-white uppercase tracking-[0.2em] hover:bg-amber-950 transition-all shadow-2xl text-xs font-black">Explore Menu</button>
                             <button onClick={onBookClick} className="px-14 py-6 border-2 border-stone-900 text-stone-900 uppercase tracking-[0.2em] hover:bg-stone-900 hover:text-white transition-all text-xs font-black">Book Visit</button>
@@ -243,7 +247,7 @@
                 <section id="services" className="py-24 md:py-48 bg-[#faf9f6]">
                     <div className="max-w-7xl mx-auto px-6">
                         <div className="text-center mb-28 md:mb-40">
-                            <span className="text-[12px] font-bold tracking-[0.8em] uppercase text-amber-900/40 block mb-10">Curated Experiences</span>
+                            <span className="text-[12px] font-bold tracking-[0.8em] uppercase text-amber-900/40 block mb-10">The Unisex Collective</span>
                             <h2 className="text-6xl md:text-[11rem] font-serif mb-16 text-stone-900 tracking-tighter leading-none">The <span className="italic font-light text-stone-400">Works</span></h2>
                             <div className="flex flex-wrap justify-center gap-8 md:gap-20">
                                 {['All', 'Barber', 'Salon', 'Treatment'].map(c => (
@@ -283,7 +287,7 @@
                             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" strokeWidth="1" /></svg>
                         </button>
                         <h3 className="text-4xl md:text-5xl font-serif italic mb-6">Reservations</h3>
-                        <p className="text-amber-500 text-[11px] font-black tracking-[0.6em] uppercase">Chantilly Studio</p>
+                        <p className="text-amber-500 text-[11px] font-black tracking-[0.6em] uppercase">Unisex Studio — Chantilly</p>
                     </div>
                     <div className="p-6 sm:p-12 md:p-20 space-y-12">
                         <div className="bg-stone-50 p-6 sm:p-10 border border-stone-100 flex flex-col md:flex-row items-center justify-between gap-8 group">
@@ -322,7 +326,7 @@
                             <div>
                                 <span className="text-amber-500 text-[12px] font-black tracking-[1em] uppercase block mb-8">Studio Map</span>
                                 <h2 className="text-7xl md:text-[10rem] font-serif italic mb-12 text-white tracking-tighter leading-none">Find Us</h2>
-                                <p className="text-stone-400 text-xl md:text-4xl font-light leading-relaxed max-w-xl mb-16">Inside <span className="text-white font-medium italic border-b-2 border-amber-950 pb-2">Sully Place</span>. World-class grooming in the heart of Virginia.</p>
+                                <p className="text-stone-400 text-xl md:text-4xl font-light leading-relaxed max-w-xl mb-16">Inside <span className="text-white font-medium italic border-b-2 border-amber-950 pb-2">Sully Place</span>. World-class unisex grooming in the heart of Virginia.</p>
                             </div>
                             <div className="space-y-12">
                                 <div className="flex items-start space-x-8">
@@ -368,7 +372,7 @@
                         </div>
                         <div className="flex flex-col items-center md:items-start space-y-1">
                             <span className="text-[11px] font-black tracking-[0.5em] uppercase text-stone-600">© {new Date().getFullYear()} Lotte Plaza Barber & Salon</span>
-                            <span className="text-[9px] font-bold tracking-[0.3em] uppercase text-stone-800">High Fidelity Grooming</span>
+                            <span className="text-[9px] font-bold tracking-[0.3em] uppercase text-stone-800">Unisex Grooming Standards</span>
                         </div>
                     </div>
                     <div className="flex space-x-12">
@@ -392,7 +396,7 @@
                         </div>
                         <div className="max-w-6xl mx-auto px-6 text-center relative z-10">
                             <span className="text-[12px] font-black tracking-[1em] uppercase text-amber-900/40 block mb-16">The Heritage</span>
-                            <h3 className="text-4xl md:text-8xl font-serif italic text-stone-950 leading-[1.05] tracking-tighter">"In the heart of Chantilly, we bridge the gap between <span className="text-amber-950 underline decoration-amber-900/30 underline-offset-[20px] decoration-4">traditional mastery</span> and modern design."</h3>
+                            <h3 className="text-4xl md:text-8xl font-serif italic text-stone-950 leading-[1.05] tracking-tighter">"In the heart of Chantilly, we bridge the gap between <span className="text-amber-950 underline decoration-amber-900/30 underline-offset-[20px] decoration-4">traditional mastery</span> and modern hair design as a <span className="font-bold">premier unisex destination</span>."</h3>
                             <div className="mt-28 flex flex-col items-center">
                                 <div className="w-24 h-px bg-stone-200 mb-12"></div>
                             </div>
